@@ -1,166 +1,133 @@
 ```
-              
-#    #  ####  
-##  ## #    # 
-# ## # #      
-#    # #      
-#    # #    # 
-#    #  ####  
-              
+                     
+######  ####  #    # 
+    #  #      #    # 
+   #    ####  ###### 
+  #         # #    # 
+ #     #    # #    # 
+######  ####  #    # 
+                     
 ```
-**Package:** mc  
-**Version:** 3:4.8.26-1.1  
+**Package:** zsh  
+**Version:** 5.8-6+deb11u1  
 **Priority:** optional  
-**Section:** utils  
-**Maintainer:** Dmitry Smirnov <onlyjob@debian.org>  
-**Installed-Size:** 1 528 kB  
-**Provides:** mcedit  
-**Depends:** libc6 (>= 2.15), libext2fs2 (>= 1.37), libglib2.0-0 (>= 2.59.2), libgpm2 (>= 1.20.7), libslang2 (>= 2.2.4), libssh2-1 (>= 1.2.8), mc-data (= 3:4.8.26-1.1)  
-**Recommends:** mime-support, perl, unzip, sensible-utils  
-**Suggests:** arj, bzip2, catdvi | texlive-binaries, dbview, djvulibre-bin, epub-utils, file, genisoimage, gv, imagemagick, libaspell-dev, links | w3m | lynx, odt2txt, poppler-utils, python, python-boto, python-tz, unar, wimtools, xpdf | pdf-viewer, zip  
-**Homepage:** https://www.midnight-commander.org  
-**Tag:** admin::filesystem, devel::lang:perl, devel::library, implemented-in::c,  
- implemented-in::perl, interface::commandline, interface::text-mode,  
- role::devel-lib, role::program, scope::application, suite::gnu,  
- uitoolkit::ncurses, use::browsing, use::editing, use::organizing,  
- works-with::archive, works-with::file  
-**Download-Size:** 534 kB  
-**APT-Manual-Installed:** yes  
+**Section:** shells  
+**Maintainer:** Debian Zsh Maintainers <pkg-zsh-devel@lists.alioth.debian.org>  
+**Installed-Size:** 2 526 kB  
+**Depends:** zsh-common (= 5.8-6+deb11u1), libc6 (>= 2.29), libcap2 (>= 1:2.10), libtinfo6 (>= 6)  
+**Recommends:** libgdbm6 (>= 1.16), libncursesw6 (>= 6), libpcre3  
+**Suggests:** zsh-doc  
+**Homepage:** https://www.zsh.org/  
+**Tag:** devel::interpreter, implemented-in::c, interface::shell,  
+ network::client, protocol::ftp, role::program, scope::utility  
+**Download-Size:** 908 kB  
 **APT-Sources:** http://deb.debian.org/debian bullseye/main amd64 Packages  
-**Description:** Midnight Commander - многофункциональный диспетчер файлов  
- GNU Midnight Commander – полноэкранный текстовый файловый менеджер.  
- В нём используется двухпанельный интерфейс и встроенная командная оболочка.  
- Также имеется встроенный редактор с подсветкой синтаксиса и просмотрщик,  
- поддерживающий двоичные файлы. Программа поддерживает виртуальную файловую  
- систему (VFS), что позволяет работать с файлами на удалённых машинах  
- (например, на серверах FTP, SSH) и с файлами внутри архивов,  
- как с обычными файлами.  
+**Description:** командная оболочка с большим набором возможностей  
+ Zsh — это командный интерпретатор UNIX (shell), используемый как  
+ интерактивная оболочка и как оболочка для интерпретатора командных  
+ сценариев. Из стандартных оболочек zsh наиболее близок к ksh, но  
+ содержит множество расширений. Zsh позволяет редактировать командную  
+ строку, имеет встроенную проверку правописания, программируемое дополнение  
+ команд, функции оболочки (с автозагрузкой), механизм истории и много  
+ других возможностей.  
   
 # Структура пакета
 ```
 TREE
-├── etc
-│   └── mc
-│       ├── edit.indent.rc
-│       ├── filehighlight.ini
-│       ├── mc.default.keymap
-│       ├── mcedit.menu
-│       ├── mc.emacs.keymap
-│       ├── mc.ext
-│       ├── mc.keymap -> mc.default.keymap
-│       ├── mc.menu
-│       └── sfs.ini
+├── bin
+│   ├── rzsh -> zsh
+│   ├── zsh
+│   └── zsh5
 └── usr
-    ├── bin
-    │   ├── mc
-    │   ├── mcdiff -> mc
-    │   ├── mcedit -> mc
-    │   └── mcview -> mc
     ├── lib
-    │   └── mc
+    │   └── x86_64-linux-gnu
     └── share
-        ├── applications
+        ├── bug
         ├── doc
         ├── lintian
-        ├── mc
-        └── pixmaps
+        └── man
 
-12 directories, 13 files
+9 directories, 3 files
 ```
 # Файл preinst
 ```bash
 #!/bin/sh
 set -e
 # Automatically added by dh_installdeb/13.3.4
-dpkg-maintscript-helper rm_conffile /etc/mc/edit.spell.rc 3:4.8.5-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.charsets 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.lib 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/Syntax 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.menu.sr 3:4.8.17-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/cedit.menu /etc/mc/mcedit.menu 3:4.8-1 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.emacs /etc/mc/mc.emacs.keymap 3:4.8.8-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.default /etc/mc/mc.default.keymap 3:4.8.8-0 -- "$@"
+dpkg-maintscript-helper symlink_to_dir /usr/share/doc/zsh zsh-common 5.0.7-3 -- "$@"
 # End automatically added section
 ```
 # Файл postinst
 ```bash
 #!/bin/sh
+
 set -e
 
+# ksh alternatives
+update-alternatives --remove ksh /usr/bin/zsh
+update-alternatives --remove ksh /bin/zsh4
+
+# Remove alternatives system for zsh in general
+update-alternatives --remove zsh /bin/zsh5
+update-alternatives --remove rzsh /bin/zsh5
+
 case "$1" in
-	configure|abort-upgrade)
-		update-alternatives --install /usr/bin/view view /usr/bin/mcview 25 \
-			--slave /usr/share/man/man1/view.1.gz view.1.gz /usr/share/man/man1/mcview.1.gz
-		update-alternatives --install /usr/bin/editor editor /usr/bin/mcedit 25 \
-			--slave /usr/share/man/man1/editor.1.gz editor.1.gz /usr/share/man/man1/mcedit.1.gz
-	;;
+    (configure)
+        add-shell /bin/zsh
+        add-shell /usr/bin/zsh
+
+	# New hardcoded symlinks which unfortunately can't be shipped inside
+	# the package itself since some people want to merge /bin and /usr/bin
+	# against FHS and all Unix tradition.
+	if [ ! -e /usr/bin/zsh -a ! -L /usr/bin/zsh ]; then
+	  ln -s /bin/zsh /usr/bin/zsh
+	fi
+    ;;
+    (abort-upgrade|abort-remove|abort-deconfigure)
+	exit 0
+    ;;
+    (*)
+	echo "postinst called with unknown argument \`$1'" >&2
+	exit 0
+    ;;
 esac
 
 # Automatically added by dh_installdeb/13.3.4
-dpkg-maintscript-helper rm_conffile /etc/mc/edit.spell.rc 3:4.8.5-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.charsets 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.lib 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/Syntax 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.menu.sr 3:4.8.17-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/cedit.menu /etc/mc/mcedit.menu 3:4.8-1 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.emacs /etc/mc/mc.emacs.keymap 3:4.8.8-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.default /etc/mc/mc.default.keymap 3:4.8.8-0 -- "$@"
+dpkg-maintscript-helper symlink_to_dir /usr/share/doc/zsh zsh-common 5.0.7-3 -- "$@"
 # End automatically added section
 
+
+exit 0
 ```
 # Файл prerm
 ```bash
 #!/bin/sh
 set -e
-
-case "$1" in
-	remove)
-		update-alternatives --remove editor /usr/bin/mcedit
-		update-alternatives --remove view /usr/bin/mcview
-	;;
-esac
-
 # Automatically added by dh_installdeb/13.3.4
-dpkg-maintscript-helper rm_conffile /etc/mc/edit.spell.rc 3:4.8.5-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.charsets 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.lib 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/Syntax 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.menu.sr 3:4.8.17-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/cedit.menu /etc/mc/mcedit.menu 3:4.8-1 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.emacs /etc/mc/mc.emacs.keymap 3:4.8.8-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.default /etc/mc/mc.default.keymap 3:4.8.8-0 -- "$@"
+dpkg-maintscript-helper symlink_to_dir /usr/share/doc/zsh zsh-common 5.0.7-3 -- "$@"
 # End automatically added section
-
 ```
 # Файл postrm
 ```bash
 #!/bin/sh
+
 set -e
 
 case "$1" in
-	purge)
+	(remove)
+	remove-shell /bin/zsh
+	remove-shell /usr/bin/zsh
 
-		rm -f \
-			/etc/mc/cedit.menu \
-			/etc/mc/*.ini \
-			/etc/mc/mc.* \
-			/etc/mc/*.rc \
-			/etc/mc/Syntax
-
-		rmdir /etc/mc 2>/dev/null || true
+	# Remove hardcoded symlink again
+	if [ -L /usr/bin/zsh ]; then
+	  rm -f /usr/bin/zsh
+	fi
 
 	;;
 esac
 
 # Automatically added by dh_installdeb/13.3.4
-dpkg-maintscript-helper rm_conffile /etc/mc/edit.spell.rc 3:4.8.5-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.charsets 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.lib 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/Syntax 3:4.8-1 -- "$@"
-dpkg-maintscript-helper rm_conffile /etc/mc/mc.menu.sr 3:4.8.17-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/cedit.menu /etc/mc/mcedit.menu 3:4.8-1 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.emacs /etc/mc/mc.emacs.keymap 3:4.8.8-0 -- "$@"
-dpkg-maintscript-helper mv_conffile /etc/mc/mc.keymap.default /etc/mc/mc.default.keymap 3:4.8.8-0 -- "$@"
+dpkg-maintscript-helper symlink_to_dir /usr/share/doc/zsh zsh-common 5.0.7-3 -- "$@"
 # End automatically added section
 
 ```
